@@ -1,0 +1,42 @@
+config defaultToCurrentScreen true
+
+### Positions
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+
+### Layouts
+
+layout design 'Google Chrome' push left bar-resize:screenSizeX*0.725 | push right bar-resize:screenSizeX*0.725
+layout design 'Zeplin' move screenOriginX+screenSizeX*0.725;screenOriginY screenSizeX*0.275;screenSizeY
+layout ios 'iTerm2' push left bar-resize:screenSizeX*0.725 | push right bar-resize:screenSizeX*0.725
+layout ios 'Simulator' move screenOriginX+screenSizeX*0.725;screenOriginY screenSizeX*0.275;screenSizeY
+layout all_full 'Code' ${full}
+layout all_full 'Google Chrome' ${full}
+
+# Key Combination
+alias main_key ctrl;cmd
+
+#Shortcut to Focus on certain apps
+bind c:${main_key} focus 'Google Chrome'
+bind v:${main_key} focus 'Code'
+bind z:${main_key} focus 'Zeplin'
+bind i:${main_key} focus 'iTerm2'
+bind s:${main_key} focus 'Slack'
+bind t:${main_key} focus 'Trello'
+bind p:${main_key} focus 'Spotify'
+
+# Dev Modes
+bind ]:${main_key} chain focus 'Google Chrome' | focus 'Code'
+
+# Layout bindings
+bind d:${main_key} layout design
+bind q:${main_key} layout ios
+bind n:${main_key} layout all_full
+bind f:${main_key} ${full}
+bind r:${main_key} ${righthalf}
+bind l:${main_key} ${lefthalf}
+
+# Monitor switching bindings
+bind down:${main_key} throw 1 resize
+bind up:${main_key} throw 0 resize
